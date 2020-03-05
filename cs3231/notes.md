@@ -150,3 +150,70 @@ Condition variables can only be used with the operations wait and signal.
 # Processes and Threads Implementation
 
 # System Calls and R3000 Overview
+
+## System Calls
+System Calls can be viewed as a special function call.
+- Provides for a controlled entry into the kernel.
+- While in kernel, perform privileged operation.
+- Returns to original caller the result.
+
+From the user's perspective:
+- Process Management
+- File I/O
+- Directories Management
+- Some other selected calls
+
+### System Calls for Process Management
+Process Management:  
+
+    pid = fork() //Creates child process identical to parent.
+    pid = waitpid(pid, &statloc, options) //Wait for child to terminate.
+    s = execve(name, argv, environp) //Replace a process' core image.
+    exit(status) //Terminate process execution and return status.
+
+### System Calls for File Management
+
+### System Call Implementation
+i.e. Crossing the user-kernel boundary.
+- ### A Simple Model of CPU Computation
+  
+- ### Privileged-mode Operation
+
+### MIPS R300
+- ### Coprocessor 0
+  - ### Introduction
+    Process Control registers are locating in Coprocessor 0 (CP0).
+      - Exception/Interrupt management registers
+      - Translation management registers  
+    
+    CP0 is manipulated using move to(MTC0) and move from(MFC0) instructions.
+      - MTC0/MFC0 are only accessible in kernel mode.
+
+  - ### Coprocesser 0 Registers
+    Exception Management:  
+    /////////////////TODO//
+  - ### C0_STATUS
+    Bits: 
+
+        KU ? user mode : kernel  
+        IE ? interrupts enabled : all interrupts masked  
+        c, p, o = current, previous, old
+
+  - ### C0_CAUSE
+
+  - ### C0_EPC
+    The Exception Program Counter
+    - Points to address of where to restart execution after handling the exception or interrupt.
+
+# Computer Hardware Review
+
+## Operating System
+  - Exploit hardward available
+  - Provide set of high level services that represent or are implemented by hardware.
+  - ...TODO
+
+## Caching as a general technique
+
+  - Two levels of data storage: small and fast, versus large and slow.
+  - Can speed access to slower storage by using intermediate-speed storage as a cache.
+
