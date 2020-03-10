@@ -67,4 +67,4 @@ An **entity set** can be viewed as:
 **Cardinality**: The number of **associated** entities on each side of a relation.
 
 **Participation**: Must every entity be in the relationship
-![]()
+![alt text](https://github.com/JrdnVan/notes/blob/master/cs3311/image.png Participation)
