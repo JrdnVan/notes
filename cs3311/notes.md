@@ -122,3 +122,14 @@ Each **attribute** (denoted A, B,... or a1, a2,...) has:
 DB definition also uses **constraints** (logic expressions)
 
 ![alt text](https://www.cse.unsw.edu.au/~cs3311/20T1/lectures/week01/Pics/er-rel/table.png "Relationship Data Model example")
+
+- Attribute values are **atomic**** (no composite or multi-valued variables)
+- Each relation has a **key** (subset of attributes unique for each tuple)
+
+Consider relation R with attributes A1, A2,..., An.
+
+- **Relation Schema** of R:  R(A1:D1, A2:D2,...,An:Dn)
+- **Tuple** of R: an element of D1 * D2 * ... * Dn (i.e. list of values)
+- **Instance** of R: subset of D1 * D2 * ... Dn (i.e. set of tuples)
+- **Database Schema**: A colleciton of relation schemas.
+- **Database (instance)**: A collection of relation instances. 
