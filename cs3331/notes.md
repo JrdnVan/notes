@@ -20,7 +20,7 @@
 - **Packet switches**: forward packets (chunks of data)
   - routers and switches
 
-## What is the internet: "nuts and bolts" view
+### What is the internet: "nuts and bolts" view
 
 - **Internet: "network of networks"**
   - Interconnected ISPs (Internet Service Provider)
@@ -30,7 +30,7 @@
   - RFC: Request for comments
   - IETF: Internet Engineering Task Force
 
-## What is the internet: a service view
+### What is the internet: a service view
 
 - **Infrastructure that provides services to applications**:
   - Web, VoIP, email, games, e-commerce, social nets, ...
@@ -39,18 +39,18 @@
   - Hooks that allow sending and receiving app programs to "connect" to Internet
   - Provides service options, analogous to postal service
 
-## What is a protocol?
+### What is a protocol?
 
 How computers talk to each other.
 
 Protocols define format, order of messages sent and received among network entities and actions taken on message transmission.
 
-### Human protocols:
+#### Human protocols:
 
 - "What's the time?"
 - "I have a question"
 
-### Network Protocols:
+#### Network Protocols:
 
 - Machines rather than humans
   - Bytes
