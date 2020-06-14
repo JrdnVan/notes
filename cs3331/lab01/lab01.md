@@ -221,9 +221,9 @@ UNSW->TU: 273ms
 - RTT/T
 
 ```
-UNSW->UQ: 16.5ms / 0.00245*1000s = 6.73
-UNSW->DLSU: 299ms / 0.02083*1000s = 14.35
-UNSW->TU: 273ms / 0.05368*1000s = 5.09
+UNSW->UQ: 16.5ms / 0.00245*1000 ms = 6.73
+UNSW->DLSU: 299ms / 0.02083*1000 ms = 14.35
+UNSW->TU: 273ms / 0.05368*1000 ms = 5.09
 ```
 
 - RTT/T vs Distance
