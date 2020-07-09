@@ -237,3 +237,209 @@ d_propagation_time
 #### Queueing delay
 
 #### End to end delay
+
+...
+
+# Application Layer
+
+## Principle of network applications
+
+### Interprocess Communication(IPC)
+
+Processes talk to each other through IPC.
+
+Single machines:
+- Through memory
+
+Across machines:
+- In need of other abstractions(message passing)
+
+#### Sockets
+
+Processes send/receive messages to/from its **socket**.
+
+#### Addressing Processes
+
+For processes to receive messages, they must have an **identifier**.
+- Each host device has a unique IP address(IPV4)
+- **Indentifier** contains both IP address and port numbers associated with process on host.
+
+#### Client-Server architecture
+Client:
+- Short-lived process that makes requests.
+- Initiates communication with server.
+- Dynamic IP address.
+- Can't communicate with other clients.
+
+Server:
+- Long-lived process that waits for requests.
+- Upon receiving request, carries it out.
+- Permanent IP address.
+- Can communicate with other servers.
+
+#### P2P (Peer to peer) architecture
+
+Peers **request service** from other peers, **provide service in return** to other peers.
+- Self scalability
+- Speed: parallelism, less contention.
+- Reliability: no 1 point failure.
+- Geographic distribution
+- Privacy protection
+
+#### App-layer protocol defines:
+- Types of messages exchanged.
+  - requests, responses.
+- Message syntax.
+  - Fields in messages.
+- Message sematics.
+  - Information in fields.
+- Rules.
+  - When/how process send/respond to message.
+- Open protocols.
+- Proprietary protocols.
+
+### What transport service does an app need?
+Certain apps need a certain combination of the following:
+- Data Integrity/Reliability
+- Timing/Low delay
+- Throughput
+- Security
+
+#### TCP (Tramsmission Control Protocol)
+- **Reliable Transport** between sending and receiving process.
+- **Flow control**: sender won't overwhelm receiver.
+- **Congestion control**: Throttle sender when network overloaded.
+- **connection-oriented**: setup required between client and server processes.
+
+Doesn't provide:
+- timing, minimum throughput guarantee, security.
+
+#### UDP (User Datagram Protocol)
+- **Unreliable data transfer** between sending and receiving process.
+
+Doesn't provide:
+- reliability, flow control, congestion control, timing, throughput guarantee, security, connection setup.
+
+## Web and HTTP
+
+### Uniform Resource Locator (URL)
+
+    protocol://host-name[:port]/directory-path/resource
+
+- protocol: http, ftp, https, smtp etc.
+- hostname: DNS name, IP address
+- port: defaults to protocol's standard port; e.g. http: 80 https:443
+- directory path: hierarchical, reflecting file system.
+- resource: Identifies the desired resource.
+
+### HTTP
+Hypertext transfer protocol.
+- Web's app. layer protocol.
+- Utilizes client/server model.
+- Utilizes TCP.
+  - Client initiates TCP connection (creating socket) to server.
+  - Server accepts the TCP connection.
+  - HTTP messages exchanged between browser (HTTP Client) and web server (HTTP Server).
+  - TCP connection closed.
+- HTTP is stateless.
+  - Server maintains no information about past client requests.
+
+#### HTTP Requests
+
+  HTTP method types/verbs:
+  - GET: Request page
+  - POST: Uploads user response to a form
+  - HEAD: Asks server to leave out object out of response
+  - PUT: Uploads file in entity body to path specified in URL field
+  - DELETE: Deletes file specified in URL field
+  - TRACE, OPTIONS, CONNECT, PATCH
+
+#### HTTP Responses
+
+- In ASCII form.
+- **HTTP Response** status codes:
+  - 200: OK
+  - 301: Moved Permanently
+    - Requested object moved, new location later in msg.
+  - 400: Bad Request
+    - Request not understood by server.
+  - 404: Not Found
+    - Requested document not found in server
+  - 505: HTTP version not supported
+  - 451: Unavailable for legal reasons
+  - 429: Too many requests
+  - 418 I'm a teapot
+
+#### Cookies
+
+Many websites use cookies. They have four components:
+- Cookie header line of HTTP response message
+- Cookie header line in next HTTP request message
+- Cookie file kept on user's host, managed by user's browser
+- Back-end database at Website
+
+#### Improving PLT (Page Load Time)
+
+- Improve HTTP to achieve faster downloads:
+  - Faster downloads
+
+- Caching and Replication:
+  - Fast downloads
+  - High availability
+  - Cost effective delivery infrastructure
+  - Avoid overload
+
+- Reduce content size of transfer
+- Change HTTP to make use of available bandwidth
+  - Persistent connections and pipelining
+- Change HTTP to avoid repeated transfers of same content
+  - Caching and web-proxies
+- Move content closer to client
+  - CDN (Content delivery network)
+
+##### HTTP performance: Persistent connections and pipelining
+
+A new TCP connection is created per "small object" of a web page.
+- **Non persistent** HTTP:
+  - At most one object sent over TCP connection, which is then closed.
+  - Downloading multiple objects require multiple connections.
+  - HTTP response time = 2RTT + file transmission time.
+    - one RTT to initiate TCP connection
+    - one RTT for HTTP request and first few bytes of HTTP response to return
+    - file transmission time
+- **Persistent** HTTP:
+Server leaves TCP connection open after sending response.
+  - Persistent w/o pipelining:
+    - Client issues new request only when previous response has been received.
+    - One RTT per referenced object.
+  - Persistent w/ pipelining (HTTP/1.1):
+    - Client sends request as soon as it encounters referenced object.
+    - As little as one RTT for all referenced objects.
+  
+  ##### HTTP performance: Caching and web-proxies
+
+  Caching:
+    - Browser sends all HTTP Requests to cache.
+    - Works like:
+      - If the wanted object from request is in cache, return it.
+      - Else the cache requests the object from the origin server, then returns it.
+    - Reduces response time for client request.
+    - Reduces traffic on institution's access link.
+  
+  Conditional GET:
+    - Goal: Don't send object if cache already has up to date cached version.
+    - Cache: Specify date of cached copy in HTTP request (If-modified-since: date).
+    - Server: Response contains no object if cached copy is up-to-date (HTTP/1.0 304 Not Modified).
+
+#### HTTPS
+- HTTP is insecure
+- HTTP has only basic authentication
+  - passwords are sent in base64 encoding(which can be converted to plain text).
+- HTTPS: HTTP over a connection encrypted by TLS(Transport Layer Security)
+  - Provides:
+    - Authentication
+    - Bidirectional Encryption
+
+### Electronic Mail
+
+

@@ -67,3 +67,11 @@ If-None-Match: contains the etag values.
 The server didn't explicitly return the contents of the file because the data hasn't been modified since last requesting it, meaning that the content is already cached inside local storage. The server doesn't need to inefficiently send another copy of the exact same data.
 
  ### 5. What is the value of the Etag field in the 2nd response message and how it is used? Has this value changed since the 1st response message was received?
+
+    Etag: 1bfef-173-8f4ae900
+
+The Etags are the same in both the first and second response messages.
+
+Etags are used to communicate any changes within them. If the contents of the url have changed, the etags will change.
+- If the etags are the same, the server will use the data inside the cache.
+- If the etags are different, the server will decide what needs to be downloaded / taken from cache to update the data.
